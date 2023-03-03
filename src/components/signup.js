@@ -1,25 +1,38 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Signup() {
    const[username,setUsername] =useState('')
    const[password,setPassword] =useState('')
+   const[email,setEmail] =useState('')
    const onSubmitFormHandler = async(e)=>{
     e.preventDefault()
     try{
-        
+        const body = { username,password,email }
+        const response = fetch("/signup",{
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:JSON.stringify(body)
+        })
+        console.log(response)
+    }catch (err){
+      console.error(err.message)
     }
    }
   return (
     <>
       <h1>this is signup</h1>
 
-      <form>
+      <form onSubmit={onSubmitFormHandler}>
         <label htmlFor="username">name</label>
         <input onChange={(e)=>setUsername(e.target.value)} type="text" name="username" id="username" />
         <label htmlFor="password">password</label>
         <input onChange={(e)=>setPassword(e.target.value)} type="password" name="password" id="password" />
+        <label htmlFor="email">password</label>
+        <input onChange={(e)=>setEmail(e.target.value)} type="email" name="email" id="email" />
         <button>post</button>
       </form>
+      <Link to={'/login'}>Login</Link>
     </>
   );
 }
