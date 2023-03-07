@@ -7,14 +7,16 @@ function Home() {
   const [backendData,setBackendData] = useState([{}])
 
  useEffect(()=>{
-   fetch("/signup").then(
+   fetch("http://localhost:5000/signup").then(
      response => response.json()
   ).then(
      data => {
        setBackendData(data);
+       console.log(data);
      }
    )
  },[])
+ console.log(backendData)
 
     return (
         <>
