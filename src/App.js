@@ -1,4 +1,4 @@
-import {useEffect,useState} from 'react'
+import {useContext, useEffect,useState} from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import './App.css';
@@ -7,6 +7,9 @@ import Home from './components/home';
 import Feed from './components/feed';
 import Login from './components/login';
 import Signup from './components/signup';
+import { AuthContext } from './context/context';
+import { authloader } from './util/auth';
+
 
 const router = createBrowserRouter([
   {
@@ -14,7 +17,7 @@ const router = createBrowserRouter([
     element:<Root />,
     children:[
       { path:"/", element:<Home />,},
-      { path:"feed", element:<Feed />,},
+      { path:"feed", element:<Feed />,loader:authloader},
       { path:"login", element:<Login />,},
       { path:"signup", element:<Signup />,},
     ]

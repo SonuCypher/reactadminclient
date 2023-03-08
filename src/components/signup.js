@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/context";
 
 function Signup() {
    const[username,setUsername] =useState('')
    const[password,setPassword] =useState('')
    const[email,setEmail] =useState('')
-   const [isLoggedIn,setIsLoggedIn]= useState('')
+const{isLoggedIn,setIsLoggedIn}=useContext(AuthContext)
    const onSubmitFormHandler = async(e)=>{
     e.preventDefault()
     try{

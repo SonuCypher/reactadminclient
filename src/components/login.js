@@ -1,11 +1,16 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Link } from "react-router-dom";
+import { AuthContext } from '../context/context';
 
 function Login() {
 
     const[username,setUsername] =useState('')
     const[password,setPassword] =useState('')
-    const [isLoggedIn,setIsLoggedIn]= useState('')
+    const {isLoggedIn,setIsLoggedIn}=useContext(AuthContext)
+    // const [isLoggedIn,setIsLoggedIn]= useState(false)
+
+
+
     const onSubmitFormHandler = async(e)=>{
         e.preventDefault()
         try{
@@ -28,6 +33,7 @@ function Login() {
     return (
         <>
         <h1>this is login</h1>
+        {isLoggedIn && <h1>{isLoggedIn.name}</h1>}
 
         <form onSubmit={onSubmitFormHandler}>
         <label htmlFor="username">name</label>
@@ -36,7 +42,9 @@ function Login() {
         <input onChange={(e)=>setPassword(e.target.value)} type="password" name="password" id="password" />
         <button>post</button>
       </form>
-      <Link to={'/login'}>Login</Link>
+
+
+      <Link to={'/signup'}>Signup</Link>
         </>
     )
 }
