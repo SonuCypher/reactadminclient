@@ -1,6 +1,7 @@
 import React,{useContext, useState} from 'react'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../context/context';
+import { cookies } from '../App';
 
 function Login() {
 
@@ -22,7 +23,10 @@ function Login() {
             }).then(
               response => response.json()
             ).then(
-              data =>{setIsLoggedIn(data)}
+              data =>{
+                setIsLoggedIn(data)
+                cookies.set("jwt",data.token)
+              }
             )
             
         }catch (err){

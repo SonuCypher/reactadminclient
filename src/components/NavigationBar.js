@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/context";
-import { NavLink } from "react-router-dom";
+import { NavLink, redirect } from "react-router-dom";
 import "./NavigationBar.css";
+import { cookies } from "../App";
 function NavigationBar() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
@@ -9,11 +10,12 @@ function NavigationBar() {
     fetch("http://localhost:5000/logout", {
       method: "POST",
     })
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoggedIn(data);
-        console.log(data);
-      });
+    .then((response) => response.json())
+    .then((data) => {
+      setIsLoggedIn(data);
+      cookies.remove("jwt")
+      
+    });
   };
   return (
     <header className="header">
@@ -35,11 +37,11 @@ function NavigationBar() {
               <NavLink to={"login"}>login</NavLink>
             </li>
           )}
-          {isLoggedIn && (
             <li onClick={loggOutHandler}>
-              <NavLink>logout</NavLink>
+              <NavLink to={"/"}>logout</NavLink>
             </li>
-          )}
+          {/* {isLoggedIn && (
+          )} */}
         </ul>
       </nav>
     </header>

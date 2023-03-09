@@ -29,7 +29,7 @@ const{isLoggedIn,setIsLoggedIn}=useContext(AuthContext)
   return (
     <>
       <h1>this is signup</h1>
-      <h1>{ isLoggedIn ? isLoggedIn.name : 'Name'}</h1>
+      <h1>{ isLoggedIn ? isLoggedIn.name : 'Name'}{isLoggedIn? isLoggedIn.user_id : " "}</h1>
 
       <form onSubmit={onSubmitFormHandler}>
         <label htmlFor="username">name</label>
