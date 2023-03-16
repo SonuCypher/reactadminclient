@@ -7,6 +7,7 @@ import Feed from './components/feed';
 import Login from './components/login';
 import Signup from './components/signup';
 import Cookies from "universal-cookie"
+import jwt from "jwt-decode"
 import { authloader } from './util/auth';
 
 

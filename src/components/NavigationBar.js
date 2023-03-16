@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/context";
-import { NavLink, redirect } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import "./NavigationBar.css";
 import { cookies } from "../App";
 function NavigationBar() {

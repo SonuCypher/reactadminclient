@@ -1,9 +1,8 @@
 import{ redirect }from 'react-router-dom'
-import { cookies } from '../App';
+import Cookies from "universal-cookie"
 
-
-
-  export const authloader=()=>{
+export const authloader=()=>{
+    const cookies = new Cookies()
     const auth = cookies.get("jwt")
     if(!auth){
        return redirect('/login')
